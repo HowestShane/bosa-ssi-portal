@@ -4,15 +4,23 @@
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-normal">
-            {{$t('GHENT_PORTAL.WELCOME')}}
+            {{ $t("GHENT_PORTAL.WELCOME") }}
           </h1>
           <p class="lead text-muted fw-normal mb-4">
-            {{$t('GHENT_PORTAL.CHOOSE_ACTION')}}
+            {{ $t("GHENT_PORTAL.CHOOSE_ACTION") }}
           </p>
           <div>
             <div>
-              <div class="my-2"><nuxt-link to="GhentSignup" class="btn btn-primary py-2 px-5">Get your VerifiableId credential</nuxt-link></div>
-              <div class="my-2"><nuxt-link to="GhentPortal" class="btn btn-primary py-2 px-5">Go to Ghent Portal</nuxt-link></div>
+              <div class="my-2">
+                <nuxt-link to="VerifiableID" class="btn btn-primary py-2 px-5"
+                  >Get your VerifiableId credential</nuxt-link
+                >
+              </div>
+              <div class="my-2">
+                <nuxt-link to="GhentPortal" class="btn btn-primary py-2 px-5"
+                  >Go to BOSA Portal</nuxt-link
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -22,11 +30,8 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
-
 </style>

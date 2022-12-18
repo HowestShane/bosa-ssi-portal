@@ -1,7 +1,7 @@
 <template>
 <section class="py-5 text-center container">
   <div>
-    <h1>Welcome to Ghent Portal</h1>
+    <h1>Welcome to the Federal Portal</h1>
     <p>
       <table class="table">
               <tbody>
@@ -29,49 +29,60 @@
   </div>
 </section>
 </template>
-	
+
 <script>
-import QRious from "qrious"
+import QRious from "qrious";
 export default {
-  name: 'GhentPortal',
-  middleware: [ 'portal-login', 'auth' ],
-  data() { return {
-    walletUrl: null
-  }},
-	async asyncData ({ $axios, query, $auth }) {
-    console.log($auth.user.id)
-    const citizen = await $axios.$get("/ghent/portal/citizen/"+$auth.user.id)
-    return { citizen }
+  name: "GhentPortal",
+  middleware: ["portal-login", "auth"],
+  data() {
+    return {
+      walletUrl: null,
+    };
+  },
+  async asyncData({ $axios, query, $auth }) {
+    console.log($auth.user.id);
+    const citizen = await $axios.$get("/ghent/portal/citizen/" + $auth.user.id);
+    return { citizen };
   },
   computed: {
     personalID() {
-      return this.citizen.personalIdentifier
-    }
+      return this.citizen.personalIdentifier;
+    },
   },
   methods: {
-    async goToWallet (walletId, type) {
+    async goToWallet(walletId, type) {
       this.btnLoading = true;
-      console.log("Citizen data:", this.citizen)
-      const params = { "walletId": walletId, "isPreAuthorized": true, "userPin": null }
-      if(walletId != "x-device") {
-        window.location = `/ghent/portal/issue/${this.personalID}/${type}?${Object.keys(params)
-          .filter(k => params[k] != null)
-          .map(k => `${k}=${params[k]}`).join("&")}`
+      console.log("Citizen data:", this.citizen);
+      const params = {
+        walletId: walletId,
+        isPreAuthorized: true,
+        userPin: null,
+      };
+      if (walletId != "x-device") {
+        window.location = `/ghent/portal/issue/${
+          this.personalID
+        }/${type}?${Object.keys(params)
+          .filter((k) => params[k] != null)
+          .map((k) => `${k}=${params[k]}`)
+          .join("&")}`;
       } else {
         this.btnLoading = false;
-        this.$bvModal.show("qr-modal")
-        this.walletUrl = await this.$axios.$get(`/ghent/portal/issue/${this.personalID}/${type}`, { params: params })
+        this.$bvModal.show("qr-modal");
+        this.walletUrl = await this.$axios.$get(
+          `/ghent/portal/issue/${this.personalID}/${type}`,
+          { params: params }
+        );
         new QRious({
-        element: document.getElementById('qr-code'),
+          element: document.getElementById("qr-code"),
           value: this.walletUrl,
-          size: 300
-        })
+          size: 300,
+        });
       }
     },
-  }
-}
+  },
+};
 </script>
-	
+
 <style scoped>
-	
 </style>

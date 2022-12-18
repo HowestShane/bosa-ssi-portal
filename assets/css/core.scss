@@ -4,12 +4,14 @@
 
 /*Colors and Shdows*/
 
-$main-color: #0573F0;
+$main-color: hsl(188,93%,28%);
+$dark-color: hsl(190,50%,7%);
 $light-color: #0573f042;
 $main-text: #292928;
 $second-text: #575756;
 $second-text-muted: #888888;
 $ui-border-raduis: 25px;
+$font-family: "Montserrat","Open Sans",Arial,Verdana,sans-serif;
 
 /* Amimations */
 
@@ -24,6 +26,10 @@ $ui-border-raduis: 25px;
 
 
 /* width */
+
+h1 {
+  font-family: $font-family;
+}
 
 ::-webkit-scrollbar {
     width: 8px;

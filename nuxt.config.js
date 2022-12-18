@@ -1,19 +1,17 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Ghent Energy Portal',
+    title: "Federal Portal",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en",
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" },
+      { name: "format-detection", content: "telephone=no" },
     ],
-    link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
-    ]
+    link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -21,14 +19,11 @@ export default {
     "@/assets/css/core.css",
     "@/assets/css/animate.min.css",
     "@/assets/css/animations.css",
-    "@/assets/css/bootstrap-icons.css"
+    "@/assets/css/bootstrap-icons.css",
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '@/plugins/bootstrap',
-    '@/plugins/bootstrap-script'
-  ],
+  plugins: ["@/plugins/bootstrap", "@/plugins/bootstrap-script"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -42,25 +37,25 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
+    "bootstrap-vue/nuxt",
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    '@nuxtjs/i18n',
-    '@nuxtjs/auth-next'
+    "@nuxtjs/axios",
+    "@nuxtjs/i18n",
+    "@nuxtjs/auth-next",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    proxy: true
+    proxy: true,
   },
 
   proxy: {
-    '/issuer-api/': 'https://wallet.walt-test.cloud',
-    '/onboarding-api/': 'https://wallet.walt-test.cloud',
-    '/api/': 'https://wallet.walt-test.cloud',
+    "/issuer-api/": "https://wallet.walt-test.cloud",
+    "/onboarding-api/": "https://wallet.walt-test.cloud",
+    "/api/": "https://wallet.walt-test.cloud",
     //'/ghent/': 'http://localhost:5555'
-    '/ghent/': 'https://integrations.walt-test.cloud'
+    "/ghent/": "https://integrations.walt-test.cloud",
     //'/issuer-api/': 'http://localhost:8080/',
     //'/onboarding-api/': 'http://localhost:8080/',
     //'/api/': 'http://localhost:8080/'
@@ -68,54 +63,53 @@ export default {
 
   i18n: {
     /* module options */
-    langDir: '~/locales/',
+    langDir: "~/locales/",
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js', flag: 'flag-en.svg' },
-      { code: 'de', iso: 'de-DE', file: 'de.js', flag: 'flag-de.svg' },
-      { code: 'fr', iso: 'fr-FR', file: 'fr.js', flag: 'flag-fr.svg' },
+      { code: "en", iso: "en-US", file: "en.js", flag: "flag-en.svg" },
+      { code: "de", iso: "de-DE", file: "de.js", flag: "flag-de.svg" },
+      { code: "fr", iso: "fr-FR", file: "fr.js", flag: "flag-fr.svg" },
     ],
-    defaultLocale: 'en',
-    strategy: 'no_prefix',
+    defaultLocale: "en",
+    strategy: "no_prefix",
     vueI18n: {
-      fallbackLocale: 'en'
-    }
+      fallbackLocale: "en",
+    },
   },
 
-  router: {
-  },
+  router: {},
 
   publicRuntimeConfig: {
-    copyright: process.env.COPYRIGHT || 'powered by walt.id',
-    salt: process.env.SALT
+    copyright: process.env.COPYRIGHT || "powered by walt.id",
+    salt: process.env.SALT,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     babel: {
-      compact: true
-    }
+      compact: true,
+    },
   },
 
   ssr: false,
   server: {
-    port: 8000
+    port: 8009,
   },
 
   auth: {
     strategies: {
       local: {
         token: {
-          property: 'token',
+          property: "token",
           global: true,
           // required: true,
-          type: 'Bearer'
+          type: "Bearer",
         },
         user: false,
         endpoints: {
-          login: { url: '/ghent/portal/authorize/token', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get' }
-        }
-      }
-    }
-  }
-}
+          login: { url: "/ghent/portal/authorize/token", method: "post" },
+          user: { url: "/api/auth/user", method: "get" },
+        },
+      },
+    },
+  },
+};
